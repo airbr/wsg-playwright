@@ -2,7 +2,8 @@
 
 ## Experimental tests on wsg-o-matic.com
 
-Run tests - Initial Load
-Run test per frame loaded upon interaction
+Currently creating a test suite to confirm the functioning of the site on many browsers and conditions.
+
+
 
 
