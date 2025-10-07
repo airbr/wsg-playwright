@@ -1,26 +1,17 @@
 import { test, expect } from '@playwright/test';
 
-test('has title and heading', async ({ page }) => {
+test('Has page title and H1 heading', async ({ page }) => {
   await page.goto('https://wsg-o-matic.com/');
-
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle("Get a Sustainable Guideline (WSG)");
-
   await expect(page.getByRole('heading', { name: 'WSG-o-matic: a resource about' })).toBeVisible();
 });
 
 test('Guideline seems to load', async ({ page }) => {
   await page.goto('https://wsg-o-matic.com/');
-
   await page.getByRole('button', { name: 'Open Random Guideline' }).click();
-
   await expect(page.getByText('Want another? get a random')).toBeVisible();
-});
-
-test('Runs successfully when enter key pressed down on big button', async ({ page }) => {
-  await page.goto('https://wsg-o-matic.com/');
-
-  await page.getByRole('button', { name: 'Open Random Guideline' }).press('Enter', { delay: 1500 });
+  await expect(page.getByText(/Guideline:/)).toBeVisible();
 });
 
 test('No errors after multiple attempts', async ({ page }) => {
@@ -30,7 +21,7 @@ test('No errors after multiple attempts', async ({ page }) => {
   page.on('pageerror', exception => {
     errors.push(exception.message);
   });
-  if (errors !== []) {
+  if (errors.length != 0) {
     console.log(errors); 
   }
   await page.getByRole('button', { name: 'Open Random Guideline' }).press('Enter', { delay: 1500 });
@@ -38,4 +29,6 @@ test('No errors after multiple attempts', async ({ page }) => {
   await page.getByRole('button', { name: 'Open Random Guideline' }).press('Enter', { delay: 1500 });
   await page.getByRole('button', { name: 'Open Random Guideline' }).press('Enter', { delay: 1500 });
   await page.getByRole('button', { name: 'Open Random Guideline' }).press('Enter', { delay: 1500 });
+  // Wait to finish
+  await page.waitForTimeout(1000);
 });
