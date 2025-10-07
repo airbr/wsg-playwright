@@ -22,3 +22,20 @@ test('Runs successfully when enter key pressed down on big button', async ({ pag
 
   await page.getByRole('button', { name: 'Open Random Guideline' }).press('Enter', { delay: 1500 });
 });
+
+test('No errors after multiple attempts', async ({ page }) => {
+  await page.goto('https://wsg-o-matic.com/');
+
+  let errors: Array<string> = [];
+  page.on('pageerror', exception => {
+    errors.push(exception.message);
+  });
+  if (errors !== []) {
+    console.log(errors); 
+  }
+  await page.getByRole('button', { name: 'Open Random Guideline' }).press('Enter', { delay: 1500 });
+  await page.getByRole('button', { name: 'Open Random Guideline' }).press('Enter', { delay: 1500 });
+  await page.getByRole('button', { name: 'Open Random Guideline' }).press('Enter', { delay: 1500 });
+  await page.getByRole('button', { name: 'Open Random Guideline' }).press('Enter', { delay: 1500 });
+  await page.getByRole('button', { name: 'Open Random Guideline' }).press('Enter', { delay: 1500 });
+});

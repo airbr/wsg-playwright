@@ -58,7 +58,11 @@ export default defineConfig({
       name: 'Mobile Safari',
       use: { ...devices['iPhone 12'] },
     },
-
+    /* Test a single tablet */
+    {
+      name: 'iPad Mini',
+      use: { ...devices['Pad Mini'] },
+    },
     /* Test against branded browsers. */
     {
       name: 'Microsoft Edge',
