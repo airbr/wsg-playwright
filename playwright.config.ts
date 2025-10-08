@@ -39,12 +39,10 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
-
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
@@ -59,20 +57,21 @@ export default defineConfig({
       name: 'Mobile Safari',
       use: { ...devices['iPhone 12'] },
     },
-    /* Test a single tablet */
+    /* Test a popular tablet */
     {
       name: 'iPad Mini',
       use: { ...devices['Pad Mini'] },
     },
-    /* Test against branded browsers. */
+    /* Landscape tablet */
+    {
+      name: 'iPad Pro 11 landscape',
+      use: { ...devices['iPad Pro 11 landscape'] },
+    },
+    /* Test against a branded browser. */
     {
       name: 'Microsoft Edge',
       use: { ...devices['Desktop Edge'], channel: 'msedge' },
     },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
   ],
 
   /* Run your local dev server before starting the tests */
