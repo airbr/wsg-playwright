@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('Main Test: Confirm title & h1, load initial guideline, re-run 4 times without error', async ({ page }) => {
+test('Detect title & h1, load guideline, re-run 4 times without error', async ({ page }) => {
   await page.goto('https://wsg-o-matic.com/');
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle("Get a Sustainable Guideline (WSG)");
