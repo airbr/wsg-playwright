@@ -1,11 +1,12 @@
-# WSG Playwright Tests
+# WSG Playwright Tests - A dash of randomness
 
-This repository contains Playwright tests for the WSG (Web Sustainability Guidelines) demo site wsg-o-matic (https://wsg-o-matic.com/).
+This repository contains experimental Playwright tests for the WSG (Web Sustainability Guidelines) demo site wsg-o-matic (https://wsg-o-matic.com/). It is intended to be fun and interesting.
 
 Contents
-- `tests/wsg-o-matic.spec.ts` - Basic smoke tests that verify the landing page title, H1 visibility, that a random guideline loads, and repeated interactions don't produce page errors.
-- `tests/wsg-outlinks.spec.ts` - A test that opens a random guideline, navigates to the WSG document for that guideline, and asserts the guideline heading is visible in the viewport.
-- `playwright.config.ts` - Playwright configuration (browsers, timeouts, projects). (Already present in the repo.)
+- `tests/main.spec.ts` - A single test intended to verify for a given device that the landing page title, H1 visibility, that a random guideline loads, and repeated interactions don't produce page errors.
+- `tests/outlinks.spec.ts` - A single test that opens a random guideline, navigates to the WSG document for that guideline, and asserts the guideline heading is visible in the viewport.
+- `tests/accessibility.spec.ts` - Basic programmatic accessibility testing, before loading a guideline and afterwards.
+- `playwright.config.ts` - Playwright configuration (browsers, timeouts, projects).
 - `package.json` - Minimal project manifest with devDependencies on `@playwright/test`.
 
 Prerequisites
@@ -43,7 +44,7 @@ npx playwright test
 Run a single test file
 
 ```bash
-npx playwright test tests/wsg-o-matic.spec.ts
+npx playwright test main
 ```
 
 Show an interactive test run (headed) for debugging
@@ -58,21 +59,6 @@ Run with the Playwright test reporter GUI
 npx playwright show-report
 ```
 
-Tips & Notes
-- The repository uses the `@playwright/test` runner. If you want to add scripts to `package.json` to simplify running tests, you can add, for example:
-
-```json
-"scripts": {
-  "test": "playwright test",
-  "test:headed": "playwright test --headed",
-  "report": "playwright show-report"
-}
-```
-
-- Tests open the live site at `https://wsg-o-matic.com/`. If you need to run against a local copy, update `tests/*.spec.ts` to point to your local URL or configure `baseURL` in `playwright.config.ts`.
-
-- Some tests use small explicit waits (e.g. `page.waitForTimeout(3000)`) — these were added to allow the WSG document to load. If flaky, consider replacing explicit waits with proper waits for elements or network idle conditions.
-
 Troubleshooting
 - If tests fail with missing browser errors, run `npx playwright install`.
 - If TypeScript type errors appear, ensure `@types/node` and Playwright types are installed (they are in devDependencies). You can also run `npx playwright codegen` to generate sample scripts.
@@ -84,7 +70,3 @@ Contributing
 
 Acknowledgements
 - Playwright — end-to-end testing framework by Microsoft.
-
-## Screenshot:
-
-<img alt="Screenshot 2025-10-07 at 00-28-45 Playwright Test Report" src="https://github.com/user-attachments/assets/2b3a0448-2134-4cc9-aaf5-4c3bcb53e9fa" />

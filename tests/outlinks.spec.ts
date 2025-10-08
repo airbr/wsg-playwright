@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('visit WSG from header link, check WSG link in full text has text of heading in viewport i.e anchor', async ({ page }) => {
+test('Visit WSG from header link, check WSG link in full text has text of heading in viewport', async ({ page }) => {
   test.slow();
   await page.goto('https://wsg-o-matic.com/');
   await expect(page).toHaveTitle("Get a Sustainable Guideline (WSG)");
@@ -18,5 +18,5 @@ test('visit WSG from header link, check WSG link in full text has text of headin
   await page.waitForTimeout(3000);
   // Look for Heading with Guideline name on WSG Document
   // Trim Text Content from beginning to remove Guideline:
-  await expect(page.  getByRole('heading', { name: trimmedRegexMatch.slice(11) })).toBeInViewport();
+  await expect(page.getByRole('heading', { name: trimmedRegexMatch.slice(11) })).toBeInViewport();
 });
